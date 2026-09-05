@@ -1,0 +1,19 @@
+# Dependencies
+frontend/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+backend/get-pip.py
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Claude local settings
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
