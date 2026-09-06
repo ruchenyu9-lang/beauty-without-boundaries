@@ -58,6 +58,13 @@ jobs:
         env:
           VITE_USE_MOCK_API: 'true'
 
+      # GitHub Pages has no SPA rewrite: serving the app shell as 404.html lets
+      # direct links and refreshes on client-side routes boot the SPA (HTTP 404
+      # status is invisible to users).
+      - name: SPA fallback page
+        working-directory: frontend
+        run: cp dist/index.html dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
