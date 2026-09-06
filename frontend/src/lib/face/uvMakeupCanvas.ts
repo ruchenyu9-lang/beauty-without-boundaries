@@ -193,9 +193,10 @@ export class UvMakeupCanvas {
       this.baseCanvas.height = this.size;
     }
 
-    this.ctx = this.canvas.getContext('2d')!;
-    this.blendCtx = this.blendCanvas.getContext('2d')!;
-    this.baseCtx = this.baseCanvas.getContext('2d')!;
+    // Canvas union type returns a union 2D context; both support the drawing ops used here.
+    this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
+    this.blendCtx = this.blendCanvas.getContext('2d') as CanvasRenderingContext2D;
+    this.baseCtx = this.baseCanvas.getContext('2d') as CanvasRenderingContext2D;
     this.clear();
   }
 

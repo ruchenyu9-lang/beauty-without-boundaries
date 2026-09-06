@@ -1,13 +1,19 @@
 /**
  * API client for backend communication.
+ *
+ * Static demo mode: when built with VITE_USE_MOCK_API=true (GitHub Pages
+ * deployment), requests are served by the in-browser mock backend
+ * (see ./mockServer.ts) instead of the FastAPI server.
  */
 
 import axios from 'axios';
+import { mockAdapter } from './mockServer';
 
 const api = axios.create({
   baseURL: '/api',
   timeout: 30000,
   headers: { 'Content-Type': 'application/json' },
+  ...(import.meta.env.VITE_USE_MOCK_API === 'true' ? { adapter: mockAdapter } : {}),
 });
 
 // ── Products ──────────────────────────────────────────────

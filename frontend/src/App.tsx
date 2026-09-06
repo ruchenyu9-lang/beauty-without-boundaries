@@ -66,7 +66,8 @@ export default function App() {
 
   return (
     <ColorVisionContext.Provider value={{ state: cvState, update: updateCv }}>
-      <BrowserRouter>
+      {/* basename follows Vite's base path so routing works under GitHub Pages subpaths */}
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <Navigation />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: 20 }}>
           <Routes>

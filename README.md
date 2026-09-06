@@ -2,6 +2,18 @@
 
 欧莱雅第二届美妆黑客松 · 无界体验家赛道 — 多模态美妆交互平台
 
+**🌐 在线演示**: https://ruchenyu9-lang.github.io/beauty-without-boundaries/
+
+> 无需安装任何东西，直接在浏览器中体验全部三大功能（3D 人脸试妆需要摄像头权限）。
+
+## 在线演示说明
+
+GitHub Pages 部署的是**纯静态版本**：由于后端返回的全部是预生成的 Mock 数据和确定性色彩计算（CIEDE2000、Lab 转换、Daltonize），这些逻辑被完整移植到了浏览器端（`frontend/src/api/mockServer.ts`），因此静态版与本地运行前后端的完整版表现一致。
+
+- 推送到 `main` 分支的改动会通过 GitHub Actions（`.github/workflows/deploy-pages.yml`）自动重新部署
+- 本地开发仍按下方步骤启动真实的 FastAPI 后端
+- 修改后端种子数据后，运行 `cd frontend && node scripts/gen-seed-data.cjs` 同步前端副本
+
 ## 快速启动
 
 ### 后端 (Python + FastAPI)
