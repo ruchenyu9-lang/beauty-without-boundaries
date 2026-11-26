@@ -9,6 +9,9 @@ export interface AnalysisResult {
 
 export interface DetectedProduct {
   type: string;
+  brand?: string;
+  product_name?: string;
+  shade?: string;
   color_description: string;
   estimated_hex: string;
   region: string;

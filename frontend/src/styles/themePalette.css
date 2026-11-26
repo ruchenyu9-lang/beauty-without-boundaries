@@ -1,0 +1,70 @@
+/**
+ * 背景配色覆盖层（蓝 #56B4E9 + 橙 #E69F00）
+ *
+ * 只覆盖页面/导航/首页背景光斑，不改动任何毛玻璃文字卡片、边框与文字颜色。
+ * 原始紫色配色完整保留在下方注释中；如需回退，只需删除 main.tsx 中
+ * `import './styles/themePalette.css';` 这一行即可恢复原方案。
+ */
+
+/* ── 首页 + 全局背景 ───────────────────────────────────────
+ * 原始：
+ * body { background-color: #ddd6fe; background-image:
+ *   radial-gradient(at 0% 0%, rgba(167,139,250,.7), transparent 80%),
+ *   radial-gradient(at 100% 0%, rgba(129,140,248,.6), transparent 80%),
+ *   radial-gradient(at 50% 50%, rgba(192,132,252,.35), transparent 80%),
+ *   radial-gradient(at 80% 90%, rgba(99,102,241,.4), transparent 80%); }
+ */
+body {
+  background-color: #dbeafe;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(86, 180, 233, 0.55) 0px, transparent 80%),
+    radial-gradient(at 100% 0%, rgba(230, 159, 0, 0.32) 0px, transparent 80%),
+    radial-gradient(at 50% 50%, rgba(86, 180, 233, 0.28) 0px, transparent 80%),
+    radial-gradient(at 80% 90%, rgba(230, 159, 0, 0.22) 0px, transparent 80%);
+}
+
+/* 原始 .site-nav:
+ * linear-gradient(90deg, rgba(192,132,252,.3), rgba(244,114,182,.22) 55%, rgba(56,189,248,.18)) */
+.site-nav {
+  background: linear-gradient(
+    90deg,
+    rgba(86, 180, 233, 0.32) 0%,
+    rgba(230, 159, 0, 0.2) 55%,
+    rgba(86, 180, 233, 0.18) 100%
+  );
+}
+
+/* 原始首页光斑：#c084fc / #f472b6 / #38bdf8 */
+.hero-blob--purple { background: #56B4E9; }
+.hero-blob--pink { background: #E69F00; }
+
+/* ── 图片分析页 ────────────────────────────────────────────
+ * 原始：rgba(192,132,252,.22) / rgba(56,189,248,.2) / rgba(244,114,182,.1)
+ */
+.analysis-page {
+  background:
+    radial-gradient(circle at 92% 0%, rgba(230, 159, 0, 0.2), transparent 36%),
+    radial-gradient(circle at 4% 96%, rgba(86, 180, 233, 0.24), transparent 36%),
+    radial-gradient(circle at 52% 52%, rgba(230, 159, 0, 0.1), transparent 45%),
+    linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* ── 智能妆容页 ────────────────────────────────────────────
+ * 原始：rgba(56,189,248,.16) / rgba(244,114,182,.13)
+ */
+.makeup-page {
+  background:
+    radial-gradient(circle at 6% 0%, rgba(86, 180, 233, 0.2), transparent 34%),
+    radial-gradient(circle at 92% 12%, rgba(230, 159, 0, 0.16), transparent 32%),
+    linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* ── 色觉无障碍页 ──────────────────────────────────────────
+ * 原始：rgba(56,189,248,.08) / rgba(244,114,182,.07)
+ */
+.cv-page {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(86, 180, 233, 0.12), transparent 32%),
+    radial-gradient(circle at 100% 100%, rgba(230, 159, 0, 0.1), transparent 32%),
+    linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+}

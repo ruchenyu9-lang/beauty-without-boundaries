@@ -1,9 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, NavLink, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import SmartMakeupPage from './pages/SmartMakeupPage';
 import ImageAnalysisPage from './pages/ImageAnalysisPage';
 import ColorVisionPage from './pages/ColorVisionPage';
+import { HomeIcon, LipstickIcon, CameraIcon, PaletteIcon, SparklesIcon } from './components/common/Icons';
+
+const ROUTER_BASE = ((import.meta as unknown as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/')
+  .replace(/\/$/, '') || '/';
 
 // ── Color Vision Context ─────────────────────────────────────
 interface ColorVisionState {
@@ -29,31 +33,34 @@ export const useColorVision = () => useContext(ColorVisionContext);
 function Navigation() {
   const { state } = useColorVision();
   const links = [
-    { path: '/', label: '首页', icon: '🏠' },
-    { path: '/smart-makeup', label: '智能妆容', icon: '💄' },
-    { path: '/image-analysis', label: '图片分析', icon: '📸' },
-    { path: '/color-vision', label: '色觉无障碍', icon: '🎨' },
+    { path: '/', label: '首页', Icon: HomeIcon },
+    { path: '/smart-makeup', label: '智能妆容', Icon: LipstickIcon },
+    { path: '/image-analysis', label: '图片分析', Icon: CameraIcon },
+    { path: '/color-vision', label: '色觉无障碍', Icon: PaletteIcon },
   ];
 
   return (
-    <nav style={{
-      display: 'flex', gap: 8, padding: '12px 20px',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      color: 'white', fontSize: 14, alignItems: 'center',
-      flexWrap: 'wrap',
-    }}>
-      <span style={{ fontWeight: 'bold', fontSize: 18, marginRight: 20 }}>美妆无界</span>
-      {links.map(l => (
-        <Link key={l.path} to={l.path} style={{
-          color: 'white', textDecoration: 'none', padding: '6px 12px',
-          borderRadius: 8, background: 'rgba(255,255,255,0.15)',
-        }}>
-          {l.icon} {l.label}
-        </Link>
-      ))}
-      <span style={{ marginLeft: 'auto', fontSize: 12 }}>
-        {state.daltonizeEnabled ? `Daltonize: ${state.cbType}` : ''}
-      </span>
+    <nav className="site-nav">
+      <Link to="/" className="nav-brand">
+        <span className="nav-brand-mark"><SparklesIcon /></span>
+        美妆无界
+      </Link>
+      <div className="nav-links">
+        {links.map(({ path, label, Icon }) => (
+          <NavLink
+            key={path}
+            to={path}
+            end={path === '/'}
+            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+          >
+            <Icon />
+            {label}
+          </NavLink>
+        ))}
+      </div>
+      {state.daltonizeEnabled && (
+        <span className="nav-status">Daltonize: {state.cbType}</span>
+      )}
     </nav>
   );
 }
@@ -66,10 +73,9 @@ export default function App() {
 
   return (
     <ColorVisionContext.Provider value={{ state: cvState, update: updateCv }}>
-      {/* basename follows Vite's base path so routing works under GitHub Pages subpaths */}
-      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+      <BrowserRouter basename={ROUTER_BASE}>
         <Navigation />
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: 20 }}>
+        <div className="app-shell">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/smart-makeup" element={<SmartMakeupPage />} />

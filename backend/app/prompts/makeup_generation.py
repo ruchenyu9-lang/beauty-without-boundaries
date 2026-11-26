@@ -58,8 +58,23 @@ MAKEUP_LOOK_SCHEMA = {
                 "type": "object",
                 "properties": {
                     "look_name": {"type": "string"},
+                    "lookName": {"type": "string"},
                     "description": {"type": "string"},
                     "style": {"type": "string"},
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "brand": {"type": "string"},
+                                "category": {"type": "string"},
+                                "name": {"type": "string"},
+                                "shade": {"type": "string"},
+                                "colorHex": {"type": "string"},
+                            },
+                            "required": ["brand", "category", "name", "shade", "colorHex"],
+                        },
+                    },
                     "steps": {
                         "type": "array",
                         "items": {

@@ -1,5 +1,12 @@
 # Dependencies
 frontend/node_modules/
+frontend/npm-cache-tmp/
+
+# Build output
+frontend/dist/
+
+# IDE
+.idea/
 
 # Build output
 frontend/dist/

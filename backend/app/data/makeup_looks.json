@@ -1,0 +1,42 @@
+[
+  {
+    "lookName": "晨曦轻颜",
+    "style": "natural",
+    "products": [
+      { "brand": "Lancôme", "category": "粉底", "name": "兰蔻持妆粉底液", "shade": "PO-01", "colorHex": "#F2D5C4" },
+      { "brand": "YSL", "category": "眼影", "name": "圣罗兰四色眼影盘", "shade": "#02 玫瑰色", "colorHex": "#D4A574" },
+      { "brand": "3CE", "category": "腮红", "name": "3CE 单色腮红", "shade": "Rose Beige", "colorHex": "#E8A87C" },
+      { "brand": "Armani", "category": "口红", "name": "阿玛尼红管唇釉", "shade": "#405 浆果红", "colorHex": "#A93B4A" }
+    ]
+  },
+  {
+    "lookName": "暖阳蜜桃",
+    "style": "natural",
+    "products": [
+      { "brand": "L'Oréal Paris", "category": "粉底", "name": "巴黎欧莱雅持妆粉底液", "shade": "N4", "colorHex": "#E8C8A8" },
+      { "brand": "3CE", "category": "眼影", "name": "3CE 四色眼影盘", "shade": "#Butter Cream", "colorHex": "#C9A96E" },
+      { "brand": "3CE", "category": "腮红", "name": "3CE 单色腮红", "shade": "Nude Peach", "colorHex": "#EB9D8E" },
+      { "brand": "YSL", "category": "口红", "name": "圣罗兰小金条唇釉", "shade": "#12 玫瑰木", "colorHex": "#D4735E" }
+    ]
+  },
+  {
+    "lookName": "星耀华妆",
+    "style": "glam",
+    "products": [
+      { "brand": "Armani", "category": "粉底", "name": "阿玛尼权力粉底液", "shade": "#4", "colorHex": "#E0BE9F" },
+      { "brand": "YSL", "category": "眼影", "name": "圣罗兰四色眼影盘", "shade": "#10 深棕", "colorHex": "#4A2C2A" },
+      { "brand": "Lancôme", "category": "腮红", "name": "兰蔻梦幻腮红", "shade": "#02", "colorHex": "#D4A574" },
+      { "brand": "Armani", "category": "口红", "name": "阿玛尼红管唇釉", "shade": "#400 经典红", "colorHex": "#8B0000" }
+    ]
+  },
+  {
+    "lookName": "雅韵职妆",
+    "style": "professional",
+    "products": [
+      { "brand": "Lancôme", "category": "粉底", "name": "兰蔻持妆粉底液", "shade": "PO-03", "colorHex": "#E0BE9F" },
+      { "brand": "3CE", "category": "眼影", "name": "3CE 单色眼影", "shade": "#Butter Cream", "colorHex": "#C9A96E" },
+      { "brand": "L'Oréal Paris", "category": "腮红", "name": "巴黎欧莱雅炫彩腮红", "shade": "#02 柔粉", "colorHex": "#E8C8A8" },
+      { "brand": "Lancôme", "category": "口红", "name": "兰蔻菁纯唇膏", "shade": "#196 玫瑰豆沙", "colorHex": "#A93B4A" }
+    ]
+  }
+]

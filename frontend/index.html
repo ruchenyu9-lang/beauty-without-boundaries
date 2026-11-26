@@ -12,6 +12,14 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // GitHub Pages 404.html 回退后恢复原始路由
+      const redirected = sessionStorage.getItem('gh-pages-redirect');
+      if (redirected) {
+        sessionStorage.removeItem('gh-pages-redirect');
+        history.replaceState(null, '', redirected);
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

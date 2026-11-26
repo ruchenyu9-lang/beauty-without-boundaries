@@ -4,8 +4,8 @@ All AI-generated results (makeup looks, image analysis, color translation, etc.)
 are replaced with hardcoded mock data so the project runs without any external API key.
 """
 
-import random
-from typing import Any
+import json
+from pathlib import Path
 
 
 class MockClaudeService:
@@ -13,100 +13,63 @@ class MockClaudeService:
 
     # ── Feature 1: Makeup look generation ────────────────────────
 
-    MOCK_MAKEUP_LOOKS = {
-        "natural": [
-            {
-                "look_name": "晨曦轻颜",
-                "description": "一款清新自然的日常妆容，适合上班或休闲场合。轻薄底妆搭配柔和腮红与自然唇色。",
-                "style": "natural",
-                "steps": [
-                    {"step_number": 1, "product_type": "foundation", "shade_number": "N4", "region": "forehead", "technique": "blend outward", "intensity": "light"},
-                    {"step_number": 2, "product_type": "foundation", "shade_number": "N4", "region": "nose", "technique": "press", "intensity": "light"},
-                    {"step_number": 3, "product_type": "foundation", "shade_number": "N4", "region": "left_cheek", "technique": "blend outward", "intensity": "light"},
-                    {"step_number": 4, "product_type": "foundation", "shade_number": "N4", "region": "right_cheek", "technique": "blend outward", "intensity": "light"},
-                    {"step_number": 5, "product_type": "blush", "shade_number": "140", "region": "left_cheek", "technique": "sweep across", "intensity": "light"},
-                    {"step_number": 6, "product_type": "blush", "shade_number": "140", "region": "right_cheek", "technique": "sweep across", "intensity": "light"},
-                    {"step_number": 7, "product_type": "lipstick", "shade_number": "220", "region": "lips_upper", "technique": "press", "intensity": "light"},
-                    {"step_number": 8, "product_type": "lipstick", "shade_number": "220", "region": "lips_lower", "technique": "press", "intensity": "light"},
-                ],
-                "shade_ids_used": ["N4", "140", "220"],
-                "region_colors": {
-                    "forehead": "#F5D5B8", "nose": "#F0CDB0", "left_cheek": "#E8A87C",
-                    "right_cheek": "#E8A87C", "lips_upper": "#C44569", "lips_lower": "#C44569",
-                },
-                "overall_intensity": "subtle",
-            },
-            {
-                "look_name": "暖阳蜜桃",
-                "description": "蜜桃色系日常妆，温暖亲和，适合约会和社交场合。重点在腮红与唇色的搭配。",
-                "style": "natural",
-                "steps": [
-                    {"step_number": 1, "product_type": "foundation", "shade_number": "N4", "region": "forehead", "technique": "blend outward", "intensity": "medium"},
-                    {"step_number": 2, "product_type": "foundation", "shade_number": "N4", "region": "left_cheek", "technique": "blend outward", "intensity": "medium"},
-                    {"step_number": 3, "product_type": "foundation", "shade_number": "N4", "region": "right_cheek", "technique": "blend outward", "intensity": "medium"},
-                    {"step_number": 4, "product_type": "blush", "shade_number": "140", "region": "left_cheek", "technique": "pat and build", "intensity": "medium"},
-                    {"step_number": 5, "product_type": "blush", "shade_number": "140", "region": "right_cheek", "technique": "pat and build", "intensity": "medium"},
-                    {"step_number": 6, "product_type": "eyeshadow", "shade_number": "R31", "region": "upper_lid", "technique": "sweep across", "intensity": "light"},
-                    {"step_number": 7, "product_type": "lipstick", "shade_number": "361", "region": "lips_upper", "technique": "press", "intensity": "medium"},
-                    {"step_number": 8, "product_type": "lipstick", "shade_number": "361", "region": "lips_lower", "technique": "press", "intensity": "medium"},
-                ],
-                "shade_ids_used": ["N4", "140", "R31", "361"],
-                "region_colors": {
-                    "forehead": "#F5D5B8", "nose": "#E8D5C0", "left_cheek": "#E8A87C",
-                    "right_cheek": "#E8A87C", "upper_lid": "#C9A96E", "lips_upper": "#D4735E", "lips_lower": "#D4735E",
-                },
-                "overall_intensity": "moderate",
-            },
-        ],
-        "glam": [
-            {
-                "look_name": "星耀华妆",
-                "description": "华丽闪耀的派对妆容，浓郁眼影搭配精致唇色，适合晚宴和庆典场合。",
-                "style": "glam",
-                "steps": [
-                    {"step_number": 1, "product_type": "foundation", "shade_number": "N4", "region": "forehead", "technique": "blend outward", "intensity": "heavy"},
-                    {"step_number": 2, "product_type": "foundation", "shade_number": "N4", "region": "left_cheek", "technique": "blend outward", "intensity": "heavy"},
-                    {"step_number": 3, "product_type": "foundation", "shade_number": "N4", "region": "right_cheek", "technique": "blend outward", "intensity": "heavy"},
-                    {"step_number": 4, "product_type": "eyeshadow", "shade_number": "C1", "region": "upper_lid", "technique": "pat and build", "intensity": "heavy"},
-                    {"step_number": 5, "product_type": "eyeshadow", "shade_number": "R31", "region": "crease", "technique": "blend outward", "intensity": "medium"},
-                    {"step_number": 6, "product_type": "eyeshadow", "shade_number": "C1", "region": "lower_lid", "technique": "sweep across", "intensity": "light"},
-                    {"step_number": 7, "product_type": "blush", "shade_number": "140", "region": "left_cheek", "technique": "sweep across", "intensity": "medium"},
-                    {"step_number": 8, "product_type": "blush", "shade_number": "140", "region": "right_cheek", "technique": "sweep across", "intensity": "medium"},
-                    {"step_number": 9, "product_type": "lipstick", "shade_number": "440", "region": "lips_upper", "technique": "press", "intensity": "heavy"},
-                    {"step_number": 10, "product_type": "lipstick", "shade_number": "440", "region": "lips_lower", "technique": "press", "intensity": "heavy"},
-                ],
-                "shade_ids_used": ["N4", "C1", "R31", "140", "440"],
-                "region_colors": {
-                    "forehead": "#F0CDB0", "left_cheek": "#D4A574", "right_cheek": "#D4A574",
-                    "upper_lid": "#4A2C2A", "lower_lid": "#6B4430", "crease": "#8B6950",
-                    "lips_upper": "#8B0000", "lips_lower": "#8B0000",
-                },
-                "overall_intensity": "dramatic",
-            },
-        ],
-        "professional": [
-            {
-                "look_name": "雅韵职妆",
-                "description": "专业干练的职场妆容，清爽底妆搭配自然眉形与低饱和唇色。",
-                "style": "professional",
-                "steps": [
-                    {"step_number": 1, "product_type": "foundation", "shade_number": "N4", "region": "forehead", "technique": "blend outward", "intensity": "light"},
-                    {"step_number": 2, "product_type": "foundation", "shade_number": "N4", "region": "left_cheek", "technique": "blend outward", "intensity": "light"},
-                    {"step_number": 3, "product_type": "foundation", "shade_number": "N4", "region": "right_cheek", "technique": "blend outward", "intensity": "light"},
-                    {"step_number": 4, "product_type": "blush", "shade_number": "140", "region": "left_cheek", "technique": "sweep across", "intensity": "light"},
-                    {"step_number": 5, "product_type": "blush", "shade_number": "140", "region": "right_cheek", "technique": "sweep across", "intensity": "light"},
-                    {"step_number": 6, "product_type": "lipstick", "shade_number": "220", "region": "lips_upper", "technique": "press", "intensity": "light"},
-                    {"step_number": 7, "product_type": "lipstick", "shade_number": "220", "region": "lips_lower", "technique": "press", "intensity": "light"},
-                ],
-                "shade_ids_used": ["N4", "140", "220"],
-                "region_colors": {
-                    "forehead": "#F5D5B8", "left_cheek": "#E8C8A8", "right_cheek": "#E8C8A8",
-                    "lips_upper": "#C44569", "lips_lower": "#C44569",
-                },
-                "overall_intensity": "subtle",
-            },
-        ],
-    }
+    @staticmethod
+    def _load_mock_makeup_looks() -> dict:
+        data_path = Path(__file__).resolve().parents[1] / "data" / "makeup_looks.json"
+        with open(data_path, encoding="utf-8") as f:
+            product_looks = json.load(f)
+
+        category_meta = {
+            "粉底": ("foundation", ["forehead", "nose"], "blend outward", "light"),
+            "眼影": ("eyeshadow", ["upper_lid", "crease"], "sweep across", "medium"),
+            "腮红": ("blush", ["left_cheek", "right_cheek"], "sweep across", "medium"),
+            "口红": ("lipstick", ["lips_upper", "lips_lower"], "press", "medium"),
+        }
+        intensity_by_style = {
+            "natural": "subtle", "subtle": "subtle",
+            "glam": "dramatic", "professional": "moderate",
+        }
+
+        grouped: dict = {}
+        for source in product_looks:
+            region_colors: dict = {}
+            steps: list = []
+            for product in source["products"]:
+                product_type, regions, technique, intensity = category_meta.get(
+                    product["category"],
+                    (product["category"], [], "sweep across", "medium"),
+                )
+                for region in regions:
+                    region_colors[region] = product["colorHex"]
+                    steps.append({
+                        "step_number": len(steps) + 1,
+                        "product_type": product_type,
+                        "shade_number": product["shade"],
+                        "region": region,
+                        "technique": technique,
+                        "intensity": intensity,
+                        "hex_color": product["colorHex"],
+                        "shade_name": product["name"],
+                        "brand": product["brand"],
+                        "product_name": product["name"],
+                    })
+
+            brand_chain = " + ".join(p["brand"] for p in source["products"])
+            look = {
+                "lookName": source["lookName"],
+                "look_name": source["lookName"],
+                "description": f"{source['lookName']} · {brand_chain}",
+                "style": source["style"],
+                "products": source["products"],
+                "steps": steps,
+                "shade_ids_used": [p["shade"] for p in source["products"]],
+                "region_colors": region_colors,
+                "overall_intensity": intensity_by_style.get(source["style"], "subtle"),
+            }
+            grouped.setdefault(source["style"], []).append(look)
+        return grouped
+
+    MOCK_MAKEUP_LOOKS = _load_mock_makeup_looks()
 
     def generate_makeup_looks(
         self, skin_tone_lab: dict, available_shades: list[dict],

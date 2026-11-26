@@ -32,10 +32,26 @@ export interface MakeupStep {
   product_name?: string;
 }
 
+export interface MakeupProduct {
+  brand: string;
+  category: string;
+  name: string;
+  shade: string;
+  colorHex: string;
+}
+
+export interface ProductMakeupLook {
+  lookName: string;
+  style: string;
+  products: MakeupProduct[];
+}
+
 export interface MakeupLook {
+  lookName: string;
   look_name: string;
   description: string;
   style: string;
+  products: MakeupProduct[];
   steps: MakeupStep[];
   shade_ids_used: string[];
   region_colors: Record<string, string>;
