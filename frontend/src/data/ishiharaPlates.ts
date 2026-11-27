@@ -26,9 +26,13 @@ const NOTES: Record<number, string> = {
   8: '正常视觉看到 88，红绿色盲通常看不到。',
 };
 
+const BASE_URL = ((import.meta as unknown as {
+  env?: { BASE_URL?: string }
+}).env?.BASE_URL ?? '/').replace(/\/$/, '');
+
 export const ISHIHARA_PLATES: IshiharaPlate[] = ishiharaAnswers.map(item => ({
   id: item.id,
-  image: `/ishihara/plate-${String(item.id).padStart(2, '0')}.png`,
+  image: `${BASE_URL}/ishihara/plate-${String(item.id).padStart(2, '0')}.png`,
   normal: item.normal,
   redGreenBlind: item.redGreenBlind,
   note: NOTES[item.id],
